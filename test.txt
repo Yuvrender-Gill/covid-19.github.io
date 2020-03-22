@@ -1,0 +1,4 @@
+git add fileName
+git commit -m "ANy message you wnna give"
+git push fileName
+git status

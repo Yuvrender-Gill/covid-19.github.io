@@ -16,11 +16,13 @@ var yyyy = yesterday.getFullYear();
 yesterday =  yyyy + '-' + mm + '-' + dd;
 
 var news = document.getElementsByClassName("country-list")[0];
-
+var globalCases = document.getElementsByClassName("global-cases")[0];
+console.log(globalCases);
 fetch("https://pomber.github.io/covid19/timeseries.json")
   .then(response => response.json())
   .then(timeSeriesData => {
-      console.log(timeSeriesData)
+    var totalConfirmed = 0;
+    var totalDeaths = 0;
     for (var key in timeSeriesData){
         var recoveredPeople;
         recoveredPeople = 0;
@@ -32,8 +34,11 @@ fetch("https://pomber.github.io/covid19/timeseries.json")
                     recoveredPeople = timeSeriesData[key][obj]["recovered"]
                 }
             }
+            
            
             if (timeSeriesData[key][obj]["date"] === today) {
+                totalConfirmed += timeSeriesData[key][obj]["confirmed"];
+                totalDeaths += timeSeriesData[key][obj]["deaths"];
                 var div = document.createElement('div');
                 div.className = 'container rounded ';
                     var h4 = document.createElement('h4');
@@ -61,7 +66,6 @@ fetch("https://pomber.github.io/covid19/timeseries.json")
                             active.innerHTML = "Active: " + (timeSeriesData[key][obj]["confirmed"] -
                                                              timeSeriesData[key][obj]["deaths"] - recoveredPeople) ;
                             active.bgColor ="#f0ad4e"
-                            
                             tr.appendChild(recovered);
                             tr.appendChild(active);
                         tbody.appendChild(tr);
@@ -74,6 +78,8 @@ fetch("https://pomber.github.io/covid19/timeseries.json")
               
                 
                 if (timeSeriesData[key][obj]["date"] === yesterday) {
+                    totalConfirmed += timeSeriesData[key][obj]["confirmed"];
+                    totalDeaths += timeSeriesData[key][obj]["deaths"];
                     var div = document.createElement('div');
                     div.className = 'container rounded ';
                         var h4 = document.createElement('h4');
@@ -114,4 +120,12 @@ fetch("https://pomber.github.io/covid19/timeseries.json")
             }
         }
     }
+    var totalConfirmedDiv = document.createElement('div');
+    totalConfirmedDiv.className = 'col';
+    totalConfirmedDiv.innerHTML = "Total Confirmed: " + totalConfirmed
+    globalCases.appendChild(totalConfirmedDiv);
+    var totalDeathDiv = document.createElement('div');
+    totalDeathDiv.className = 'col';
+    totalDeathDiv.innerHTML = "Total Deaths: " + totalDeaths
+    globalCases.appendChild(totalDeathDiv);
   })

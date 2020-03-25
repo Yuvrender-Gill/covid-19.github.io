@@ -35,38 +35,41 @@ fetch("https://pomber.github.io/covid19/timeseries.json")
            
             if (timeSeriesData[key][obj]["date"] === today) {
                 var div = document.createElement('div');
-                    div.className = 'container rounded ';
-                        var h4 = document.createElement('h4');
-                        h4.innerHTML = key ;
-                        div.appendChild(h4);
-                        var innerTable = document.createElement('table');
-                        innerTable.className = 'table rounded table-borderless table-light';
-                            var thead1 = document.createElement('thead');
-                                var tr = document.createElement('tr');
-                                var confirmed = document.createElement('th');
-                                confirmed.innerHTML = "Confirmed: " + timeSeriesData[key][obj]["confirmed"];
-                                var death = document.createElement('th');
-                                death.innerHTML = "Deaths: " + timeSeriesData[key][obj]["deaths"];
-                                tr.appendChild(confirmed);
-                                tr.appendChild(death);
-                            thead1.appendChild(tr);
-                            var tbody = document.createElement('thead');
-                                var tr = document.createElement('tr');
-                                var recovered = document.createElement('th');
-                                recovered.innerHTML = "Recovered: " +  recoveredPeople;
-                                var active = document.createElement('th');
-                                active.innerHTML = "Active: " + (timeSeriesData[key][obj]["confirmed"] -
-                                                                 timeSeriesData[key][obj]["deaths"] - recoveredPeople) ;
-                                
-                                
-                                tr.appendChild(recovered);
-                                tr.appendChild(active);
-                            tbody.appendChild(tr);
-                        innerTable.appendChild(thead1)
-                        innerTable.appendChild(tbody)
-                    div.appendChild(innerTable);
-                news.appendChild(div);
-                news.appendChild(document.createElement('br'));
+                div.className = 'container rounded ';
+                    var h4 = document.createElement('h4');
+                    h4.innerHTML = key ;
+                    div.appendChild(h4);
+                    var innerTable = document.createElement('table');
+                    innerTable.className = 'table rounded table-borderless table-light';
+                        var thead1 = document.createElement('thead');
+                            var tr = document.createElement('tr');
+                            var confirmed = document.createElement('th');
+                            confirmed.innerHTML = "Confirmed: " + timeSeriesData[key][obj]["confirmed"];
+                            confirmed.bgColor ="#0275d8"
+                            var death = document.createElement('th');
+                            death.innerHTML = "Deaths: " + timeSeriesData[key][obj]["deaths"];
+                            death.bgColor ="#d9534f"
+                            tr.appendChild(confirmed);
+                            tr.appendChild(death);
+                        thead1.appendChild(tr);
+                        var tbody = document.createElement('thead');
+                            var tr = document.createElement('tr');
+                            var recovered = document.createElement('th');
+                            recovered.innerHTML = "Recovered: " +  recoveredPeople;
+                            recovered.bgColor ="#5cb85c"
+                            var active = document.createElement('th');
+                            active.innerHTML = "Active: " + (timeSeriesData[key][obj]["confirmed"] -
+                                                             timeSeriesData[key][obj]["deaths"] - recoveredPeople) ;
+                            active.bgColor ="#f0ad4e"
+                            
+                            tr.appendChild(recovered);
+                            tr.appendChild(active);
+                        tbody.appendChild(tr);
+                    innerTable.appendChild(thead1)
+                    innerTable.appendChild(tbody)
+                div.appendChild(innerTable);
+            news.appendChild(div);
+            news.appendChild(document.createElement('br'));
             } else {
               
                 
@@ -82,8 +85,10 @@ fetch("https://pomber.github.io/covid19/timeseries.json")
                                 var tr = document.createElement('tr');
                                 var confirmed = document.createElement('th');
                                 confirmed.innerHTML = "Confirmed: " + timeSeriesData[key][obj]["confirmed"];
+                                confirmed.bgColor ="#0275d8"
                                 var death = document.createElement('th');
                                 death.innerHTML = "Deaths: " + timeSeriesData[key][obj]["deaths"];
+                                death.bgColor ="#d9534f"
                                 tr.appendChild(confirmed);
                                 tr.appendChild(death);
                             thead1.appendChild(tr);
@@ -91,10 +96,11 @@ fetch("https://pomber.github.io/covid19/timeseries.json")
                                 var tr = document.createElement('tr');
                                 var recovered = document.createElement('th');
                                 recovered.innerHTML = "Recovered: " +  recoveredPeople;
+                                recovered.bgColor ="#5cb85c"
                                 var active = document.createElement('th');
                                 active.innerHTML = "Active: " + (timeSeriesData[key][obj]["confirmed"] -
                                                                  timeSeriesData[key][obj]["deaths"] - recoveredPeople) ;
-                                
+                                active.bgColor ="#f0ad4e"
                                 
                                 tr.appendChild(recovered);
                                 tr.appendChild(active);

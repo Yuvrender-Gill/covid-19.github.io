@@ -9,7 +9,7 @@
     border: 1px solid rgba(0, 0, 0, 0.4);
     font-family: 'Open Sans', sans-serif;
 }
-     
+
 #menu a {
     font-size: 13px;
     color: #404040;
@@ -21,21 +21,21 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.25);
     text-align: center;
 }
-     
+
 #menu a:last-child {
     border: none;
 }
-     
+
 #menu a:hover {
     background-color: #f8f8f8;
     color: #404040;
 }
-     
+
 #menu a.active {
     background-color: #0d0e0f;
     color: #ffffff;
 }
-     
+
 #menu a.active:hover {
     background: #020405;
 }
@@ -60,6 +60,44 @@
     background: #ee8a65;
 }
 
+.map-overlay {
+                font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+                position: absolute;
+                width: 25%;
+                top: 0;
+                left: 0;
+                padding: 10px;
+            }
+
+            .map-overlay .map-overlay-inner {
+                background-color: #fff;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+                border-radius: 3px;
+                padding: 10px;
+                margin-bottom: 10px;
+            }
+
+            .map-overlay h2 {
+                line-height: 24px;
+                display: block;
+                margin: 0 0 10px;
+            }
+
+            .map-overlay .legend .bar {
+                height: 10px;
+                width: 100%;
+                background: linear-gradient(to right, #deebf7, ##3182bd);
+            }
+
+            .map-overlay input {
+                background-color: transparent;
+                display: inline-block;
+                width: 100%;
+                position: relative;
+                margin: 0;
+                cursor: ew-resize;
+            }
+
 .legend {
     background-color: #fff;
     border-radius: 3px;
@@ -71,11 +109,11 @@
     right: 10px;
     z-index: 1;
     }
-     
+
 .legend h4 {
     margin: 0 0 10px;
 }
-     
+
 .legend div span {
     border-radius: 50%;
     display: inline-block;

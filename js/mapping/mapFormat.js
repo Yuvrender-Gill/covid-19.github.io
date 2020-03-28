@@ -50,7 +50,7 @@ var months = [
                 map.addLayer({
                     'id': 'covid-circles',
                     'type': 'circle',
-                    'source': 'earthquakes',
+                    'source': 'covid',
                     'paint': {
                         'circle-color': [
                             'interpolate',
@@ -77,7 +77,7 @@ var months = [
                 map.addLayer({
                     'id': 'covid-labels',
                     'type': 'symbol',
-                    'source': 'earthquakes',
+                    'source': 'covid',
                     'layout': {
                         'text-field': [
                             'concat',

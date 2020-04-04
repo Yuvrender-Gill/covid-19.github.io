@@ -30,7 +30,8 @@ var months = [
         // Here we're using d3 to help us make the ajax request but you can use
         // Any request method (library or otherwise) you wish.
         d3.json(
-            'https://pomber.github.io/covid19/timeseries.json',
+            'country_json'
+            //'https://pomber.github.io/covid19/timeseries.json',
             //'https://docs.mapbox.com/mapbox-gl-js/assets/significant-earthquakes-2015.geojson',
             function(err, data) {
                 if (err) throw err;

@@ -1,21 +1,35 @@
-
 // Add zoom and rotation controls to the map.
 map.addControl(new mapboxgl.NavigationControl());
 
-var months = [
-        'January',
-        'February',
-        'March',
-        'April'
+var days = [
+        'January 22', 'January 23', 'January 24', 'January 25', 'January 26',
+        'January 27', 'January 28', 'January 29', 'January 30', 'January 31',
+        'February 1', 'February 2', 'February 3', 'February 4', 'February 5',
+        'February 6', 'February 7', 'February 8', 'February 9', 'February 10',
+        'February 11','February 12','February 13','February 14','February 15',
+        'February 16','February 17','February 18','February 19','February 20',
+        'February 21','February 22','February 23','February 24','February 25',
+        'February 26','February 27','February 28','February 29',
+        'March 1', 'March 2', 'March 3', 'March 4', 'March 5', 'March 6',
+        'March 7', 'March 8', 'March 9', 'March 10','March 11','March 12',
+        'March 13','March 14','March 15','March 16','March 17','March 18',
+        'March 19','March 20','March 21','March 22','March 23','March 24',
+        'March 25','March 26','March 27','March 28','March 29','March 30',
+        'March 31',
+        'April 1', 'April 2', 'April 3', 'April 4', 'April 5', 'April 6',
+        'April 7', 'April 8', 'April 9', 'April 10','April 11','April 12',
+        'April 13','April 14','April 15','April 16','April 17','April 18',
+        'April 19','April 20','April 21','April 22','April 23','April 24',
+        'April 25','April 26','April 27','April 28','April 29','April 30'
     ];
 
-    function filterBy(month) {
-        var filters = ['==', 'month', month];
+    function filterBy(day) {
+        var filters = ['==', 'day', day];
         map.setFilter('covid-circles', filters);
         map.setFilter('covid-labels', filters);
 
         // Set the label to the month
-        document.getElementById('month').textContent = months[month];
+        document.getElementById('day').textContent = days[day];
     }
 
     map.on('load', function() {
@@ -30,21 +44,21 @@ var months = [
         // Here we're using d3 to help us make the ajax request but you can use
         // Any request method (library or otherwise) you wish.
         d3.json(
-            'country_json'
+            //'country_json',
             //'https://pomber.github.io/covid19/timeseries.json',
-            //'https://docs.mapbox.com/mapbox-gl-js/assets/significant-earthquakes-2015.geojson',
+            'https://docs.mapbox.com/mapbox-gl-js/assets/significant-earthquakes-2015.geojson',
             function(err, data) {
                 if (err) throw err;
 
                 // Create a month property value based on time
                 // used to filter against.
                 data.features = data.features.map(function(d) {
-                    d.properties.month = new Date(d.properties.time).getMonth();
+                    d.properties.day = new Date(d.properties.time).getDay();
                     return d;
                 });
 
                 map.addSource('covid', {
-                    'type': 'json',
+                    'type': 'geojson',
                     data: data
                 });
 
@@ -66,7 +80,7 @@ var months = [
                         'circle-radius': [
                             'interpolate',
                             ['linear'],
-                            ['get', 'mag'],
+                            ['get', 'mag'], //change mag to # of cases category
                             6,
                             20,
                             8,
@@ -82,7 +96,7 @@ var months = [
                     'layout': {
                         'text-field': [
                             'concat',
-                            ['to-string', ['get', 'mag']],
+                            ['to-string', ['get', 'mag']], //change mag to # of cases category
                             'm'
                         ],
                         'text-font': [
@@ -103,8 +117,8 @@ var months = [
                 document
                     .getElementById('slider')
                     .addEventListener('input', function(e) {
-                        var month = parseInt(e.target.value, 10);
-                        filterBy(month);
+                        var day = parseInt(e.target.value, 10);
+                        filterBy(day);
                     });
             }
         );
@@ -482,3 +496,61 @@ var geojson = {
     }
   ]
 }
+
+/*Possible multidate formats
+{
+  "type": "FeatureCollection",
+  "features": [{
+    "type": "Feature",
+    "id": "Canada1",
+    "geometry": {
+            "type": "Point", "coordinates": [-116.5765, 53.9333]
+        },
+    "properties":
+    {
+      "date": "2020-3-17",
+      "confirmed": 478,
+      "deaths": 5,
+      "recovered": 9
+    },
+    {
+    "type": "Feature",
+    "id": "Canada2",
+    "geometry": {
+            "type": "Point", "coordinates": [-116.5765, 53.9334]
+        },
+    "properties":
+    {
+      "date": "2020-3-18",
+      "confirmed": 657,
+      "deaths": 8,
+      "recovered": 9
+    },
+    {
+    "type": "Feature",
+    "id": "Canada3",
+    "geometry": {
+            "type": "Point", "coordinates": [-116.5765, 53.9335]
+        },
+    "properties":
+    {
+      "date": "2020-3-19",
+      "confirmed": 800,
+      "deaths": 9,
+      "recovered": 9
+    },
+    {
+    "type": "Feature",
+    "id": "Canada4",
+    "geometry": {
+            "type": "Point", "coordinates": [-116.5765, 53.9336]
+        },
+    "properties":
+    {
+      "date": "2020-3-20",
+      "confirmed": 943,
+      "deaths": 12,
+      "recovered": 9
+    },
+  ]
+}*/

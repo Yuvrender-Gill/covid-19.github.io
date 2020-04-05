@@ -505,7 +505,7 @@ var geojson = {
 //Problem: need to manually change thousands of coordinates and ids
 //Problem: Would not work in real-time
 
-var geojson1 {
+var geojson1 = {
   "type": "FeatureCollection",
   "features": [{
     "type": "Feature",

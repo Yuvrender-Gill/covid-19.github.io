@@ -13,3 +13,5 @@ let map = new mapboxgl.Map({
     pitch: 0
 });
 
+// Add zoom and rotation controls to the map.
+map.addControl(new mapboxgl.NavigationControl());

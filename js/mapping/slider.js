@@ -44,7 +44,7 @@ map.on('load', function() {
         'paint': {
             'circle-color': [
                 'interpolate',
-                ['exponential', 10],
+                ['linear'],
                 ['get', 'confirmed'],
                 10,
                 '#eff3ff',
@@ -60,18 +60,18 @@ map.on('load', function() {
             'circle-opacity': 0.75,
             'circle-radius': [
                 'interpolate',
-                ['exponential', 10],
+                ['linear'],
                 ['get', 'confirmed'],
                 10,
-                20,
+                7.5,
                 100,
-                40,
+                17.5,
                 1000,
-                60,
+                27.5,
                 10000,
-                80,
+                37.5,
                 100000,
-                100
+                47.5
             ]
 
         }

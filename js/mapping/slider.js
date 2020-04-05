@@ -21,11 +21,11 @@ for (var entry in confirmedTseries){
 
 
 function filterBy(date) {
-    
+
     var filters = ['==', 'date', workingDates[date][0]];
     map.setFilter('coronaCases-circles', filters);
     map.setFilter('coronaCases-labels', filters);
-    
+
     // Set the label to the month
 
     document.getElementById('month').textContent = workingDates[date][1];
@@ -36,7 +36,7 @@ map.on('load', function() {
         'type': 'geojson',
         data: countryGeoJSON
     });
-         
+
     map.addLayer({
         'id': 'coronaCases-circles',
         'type': 'circle',
@@ -44,22 +44,34 @@ map.on('load', function() {
         'paint': {
             'circle-color': [
                 'interpolate',
-                ['linear'],
+                ['exponential', 10],
                 ['get', 'confirmed'],
-                6,
-                '#FCA107',
-                8,
-                '#7F3121'
+                10,
+                '#eff3ff',
+                100,
+                '#bdd7e7',
+                1000,
+                '#6baed6',
+                10000,
+                '#3182bd',
+                100000,
+                '#08519c'
             ],
             'circle-opacity': 0.75,
             'circle-radius': [
                 'interpolate',
-                ['linear'],
+                ['exponential', 10],
                 ['get', 'confirmed'],
-                6,
+                10,
                 20,
-                8,
-                40
+                100,
+                40,
+                1000,
+                60,
+                10000,
+                80,
+                100000,
+                100
             ]
 
         }
@@ -86,12 +98,12 @@ map.on('load', function() {
     });
 
     // filterBy(0);
- 
+
     document
     .getElementById('slider')
     .addEventListener('input', function(e) {
         var sliderDate = parseInt(e.target.value, 10);
         filterBy(sliderDate);
     });
-   
+
 });

@@ -33,10 +33,10 @@ function populateTable(jsonObject, tbody){
         
         var trow = document.createElement('tr'); // Row 
         // Row elements
-        var country = document.createElement('th');
+        var country = document.createElement('td');
         country.scope = "row";
         country.align="left";
-        country.innerHTML = "<span style='color: black;'>"+ jsonObject['country'] + "</span>";
+        country.innerHTML = "<span style='color: black;'> <b>"+ jsonObject['country'] + "<b> </span>";
         var confirmedTd = document.createElement('td');
         confirmedTd.innerHTML = "<span style='color: #5cb85c;'>"+ jsonObject['confirmed'] + "</span>";
         var deathsTd = document.createElement('td')

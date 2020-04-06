@@ -8,7 +8,7 @@ function searchCountry() {
   
     // Loop through all table rows, and hide those who don't match the search query
     for (i = 0; i < tr.length; i++) {
-      th = tr[i].getElementsByTagName("th")[0];
+      th = tr[i].getElementsByTagName("td")[0];
       if (th) {
         txtValue = th.textContent || th.innerText;
         if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -40,13 +40,10 @@ function searchCountry() {
         console.log(rows[0])
         /* Get the two elements you want to compare,
         one from current row and one from the next: */
-        if(n === 0){
-            x = rows[i].getElementsByTagName("th")[n];
-            y = rows[i + 1].getElementsByTagName("th")[n];
-        } else {
+    
             x = rows[i].getElementsByTagName("td")[n];
             y = rows[i + 1].getElementsByTagName("td")[n];
-        }
+        
         /* Check if the two rows should switch place,
         based on the direction, asc or desc: */
         if (dir == "asc") {

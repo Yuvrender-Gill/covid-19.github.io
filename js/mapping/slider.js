@@ -3,18 +3,17 @@
 
 var workingDates = [];
 
-for (var entry in confirmedTseries){
-    for (var date in confirmedTseries[entry]){
-        if ((date !== "Province/State")
-        && (date!== "Country/Region")
-        && (date !== "Lat")
-        && (date !== "Long")){
-            var month = new Date(date).toLocaleString('default', { month: 'long' });
-            var day = new Date(date).getDate()
-            var year =  new Date(date).getFullYear();
 
-            workingDates.push( [date, month+ " " + day + ", " +year] );
-        }
+for (var date in confirmedTseries[0]){
+    if ((date !== "Province/State")
+    && (date!== "Country/Region")
+    && (date !== "Lat")
+    && (date !== "Long")){
+        var month = new Date(date).toLocaleString('default', { month: 'long' });
+        var day = new Date(date).getDate()
+        var year =  new Date(date).getFullYear();
+
+        workingDates.push( [date, month+ " " + day + ", " +year] );
     }
 }
 
@@ -281,9 +280,6 @@ map.on('load', function() {
         'text-color': 'rgba(0,0,0,0.5)'
         }
     });
-
-
-    // filterBy(0);
 
     document
     .getElementById('slider')

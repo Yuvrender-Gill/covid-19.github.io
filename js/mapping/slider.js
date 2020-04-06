@@ -19,7 +19,6 @@ for (var entry in confirmedTseries){
 }
 
 
-
 function filterBy(date) {
     
     var filters = ['==', 'date', workingDates[date][0]];

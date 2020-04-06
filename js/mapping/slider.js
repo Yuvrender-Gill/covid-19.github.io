@@ -16,7 +16,7 @@ for (var date in confirmedTseries[0]){
     }
 }
 document.getElementById("slider").max = workingDates.length
-
+document.getElementById("latest-update").innerHTML = "Last Updated: " + workingDates[workingDates.length - 1][1]
 
 ////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////

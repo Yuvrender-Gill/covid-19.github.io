@@ -304,18 +304,38 @@ for (var i = 0; i < toggleableLayerIds.length; i++) {
     link.textContent = id;
 
     link.onclick = function(e) {
-        var clickedLayer = this.textContent;
+      if (this.textContent === 'Confirmed'){
+        var clickedLayer1 = 'Confirmed'
+        var clickedLayer2 = 'C-Count'
+      }
+      else if (this.textContent === 'Recovered'){
+        var clickedLayer1 = 'Recovered'
+        var clickedLayer2 = 'R-Count'
+      }
+      else if (this.textContent === 'Deaths'){
+        var clickedLayer1 = 'Deaths'
+        var clickedlayer2 = 'D-Count'
+      }
         e.preventDefault();
         e.stopPropagation();
 
-        var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
+        var visibility1 = map.getLayoutProperty(clickedLayer1, 'visibility');
 
-        if (visibility === 'visible') {
-            map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+        if (visibility1 === 'visible') {
+            map.setLayoutProperty(clickedLayer1, 'visibility', 'none');
             this.className = '';
         } else {
             this.className = 'active';
-            map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+            map.setLayoutProperty(clickedLayer1, 'visibility', 'visible');
+        }
+        var visibility2 = map.getLayoutProperty(clickedLayer2, 'visibility');
+
+        if (visibility2 === 'visible') {
+            map.setLayoutProperty(clickedLayer2, 'visibility', 'none');
+            this.className = '';
+        } else {
+            this.className = 'active';
+            map.setLayoutProperty(clickedLayer2, 'visibility', 'visible');
         }
     };
 

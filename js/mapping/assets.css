@@ -1,8 +1,8 @@
 #menu {
-    background: #fff;
+    background: #020405;
     position: absolute;
     z-index: 1;
-    top: 500px;
+    top: 350px;
     right: 20px;
     border-radius: 3px;
     width: 120px;
@@ -27,7 +27,7 @@
 }
 
 #menu a:hover {
-    background-color: #f1f1f1;
+    background-color: #888;
     color: #404040;
 }
 
@@ -37,7 +37,7 @@
 }
 
 #menu a.active:hover {
-    background: #020405;
+    background: #888;
 }
 
 .mapboxgl-popup {
@@ -120,6 +120,30 @@
                 position: relative;
                 margin: 0;
                 cursor: ew-resize;
+            }
+
+            .legend {
+              background-color: #fff;
+              border-radius: 3px;
+              bottom: 120px;
+              box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+              font: 24px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+              padding: 10px;
+              position: absolute;
+              right: 20px;
+              z-index: 1;
+            }
+
+            .legend h4 {
+              margin: 0 0 10px;
+            }
+
+            .legend div span {
+              border-radius: 50%;
+              display: inline-block;
+              height: 20px;
+              margin-right: 5px;
+              width: 20px;
             }
 /*
             #menu {

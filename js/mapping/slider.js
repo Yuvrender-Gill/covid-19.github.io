@@ -295,13 +295,11 @@ for (var i = 0; i < toggleableLayerIds.length; i++) {
             this.className = 'active';
             map.setLayoutProperty(clickedLayer2, 'visibility', 'visible');
             // When click one layer turn all other layers to invisible
-            
-        }  
-        
+
+        }
+
     };
 
     var layers = document.getElementById('menu');
     layers.appendChild(link);
 }
-
-

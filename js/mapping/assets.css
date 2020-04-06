@@ -12,7 +12,7 @@
 
 #menu a {
     font-size: 13px;
-    color: #404040;
+    color: #f7f7f7;
     display: block;
     margin: 0;
     padding: 0;
@@ -27,12 +27,12 @@
 }
 
 #menu a:hover {
-    background-color: #f8f8f8;
+    background-color: #f1f1f1;
     color: #404040;
 }
 
 #menu a.active {
-    background-color: #0d0e0f;
+    background-color: #f8f8f8;
     color: #ffffff;
 }
 
@@ -110,7 +110,7 @@
             .map-overlay .legend .bar {
                 height: 10px;
                 width: 100%;
-                background: linear-gradient(to right, #deebf7, ##3182bd);
+                background: linear-gradient(to right, #deebf7, #3182bd);
             }
 
             .map-overlay input {

@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Barlow+Condensed:900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
 
     <!-- Bootstrap CSS -->
@@ -37,20 +38,12 @@
                 <div class="col-md-8 rounded">
                     <div id='map' style='width: 100%; height: 640px;'></div>
                     <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-                    
-
                     <div class="map-overlay top">
                         <div class="map-overlay-inner">
-                            <h2>COVID-19 Timeline</h2>
                             <label id="month"></label>
                             <input id="slider" type="range" min="0" max="99" step="1" value="0" />
                         </div>
-                        <div class="map-overlay-inner">
-                            <div id="legend" class="legend">
-                                <div class="bar"></div>
-                                <div>Number of Affected</div>
-                            </div>
-                        </div>
+                      
                     </div>
 
                     <script src='js/mapping/map.js'></script>
@@ -64,17 +57,29 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="col-md-4">
-                    <div class="container rounded bg-dark text-white" style = "height: 40px">
-                        <h3 style = "color: white">Cases by Country</h3>
+                    <div class="container rounded bg-dark text-white" style = "height: 40px; text-align:center">
+                        <h3 style = "color: white">Global Cases</h3>
                     </div>
-                    <div class="country-list anyClass">
-
-                    </div>
-
-                    <script src='js/mapping/fetchData.js'></script>
-                
-                 </div>
+                    <script src='js/mapping/controller.js'></script>
+                    <input type="text" id="countrySearch" onkeyup="searchCountry()" placeholder="Search for country.." style="width: 100%;">
+                        <div class = anyclass>
+                        <table id="countryTable" class="table table-striped table-bordered country-list">
+                            <thead>
+                              <tr>
+                                <th class ="sorting" scope="col">Country <i class="fas fa-sort" onclick=sortTable(0)></i></th>
+                                <th scope="col">Confirmed</th>
+                                <th scope="col">Deaths</th>
+                                <th scope="col">Recovered</th>
+                              </tr>
+                            </thead> 
+                        </table>
+                        </div>
+                    <script src='js/mapping/sideTable.js'></script>
+                    
+                    
+                </div>
         </div>
 
 

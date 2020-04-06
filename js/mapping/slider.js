@@ -280,7 +280,7 @@ map.on('load', function() {
         'text-color': 'rgba(0,0,0,0.5)'
         }
     });
-
+*/
     document
     .getElementById('slider')
     .addEventListener('input', function(e) {

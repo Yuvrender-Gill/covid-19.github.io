@@ -70,7 +70,7 @@ var days = [
                         'circle-color': [
                             'interpolate',
                             ['linear'],
-                            ['get', 'mag'],
+                            ['get', 'mag'], //change mag to # of cases category
                             6,
                             '#deebf7',
                             8,

@@ -1,9 +1,12 @@
 
+
+/*
     var filterGroup = document.getElementById('filter-group');
 
 //replace places variable with countryGeoJSON
 
         countryGeoJSON.features.forEach(function(feature) {
+            if
             var symbol = feature.properties['icon'];
             var layerID = 'poi-' + symbol;
 
@@ -43,3 +46,4 @@
             }
         });
     });
+*/

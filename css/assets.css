@@ -121,6 +121,11 @@
                 margin: 0;
                 cursor: ew-resize;
             }
+.mapboxgl-popup {
+    max-width: 500px;
+    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    color:  #292b2c;
+}
 /*
             #menu {
                 background: #fff;

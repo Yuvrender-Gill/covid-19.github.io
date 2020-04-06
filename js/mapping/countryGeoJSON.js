@@ -85,7 +85,16 @@ for (var entry in confirmedTseries){
             if (recoveredTseries[entry] === undefined){
                 feature["properties"]["recovered"] = 0;
             } else {
-            feature["properties"]["recovered"] = parseFloat(recoveredTseries[entry][entryItem]);
+                if (feature["properties"]["recovered"] === undefined || (feature["properties"]["recovered"]).isNAN() ){
+                    if (feature["properties"]["country"] === recoveredTseries[entry]["Country/Region"] ){
+                        feature["properties"]["recovered"] = parseFloat(recoveredTseries[entry][entryItem]);
+                    } else {
+                        feature["properties"]["recovered"] = 0;
+                    }
+                    
+                }else {
+                    feature["properties"]["recovered"] = 0;
+                }
             }
         };
         
@@ -93,7 +102,7 @@ for (var entry in confirmedTseries){
     };
     
 };
-
+console.log(countryGeoJSON)
 // EOF
 
 

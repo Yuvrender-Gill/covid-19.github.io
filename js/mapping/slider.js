@@ -18,19 +18,18 @@ for (var entry in confirmedTseries){
     }
 }
 
-
-
+document.getElementById("slider").max = workingDates.length
 function filterBy(date) {
 
     var filters = ['==', 'date', workingDates[date][0]];
-    map.setFilter('coronaCases-circles', filters);
-    map.setFilter('coronaCases-labels', filters);
-    map.setFilter('coronaDeaths-circles', filters);
-    map.setFilter('coronaDeaths-labels', filters);
-    map.setFilter('coronaRecovered-circles', filters);
-    map.setFilter('coronaRecovered-labels', filters);
-    map.setFilter('coronaActive-circles', filters);
-    map.setFilter('coronaActive-labels', filters);
+    map.setFilter('Confirmed', filters);
+    map.setFilter('C-Count', filters);
+    map.setFilter('Deaths', filters);
+    map.setFilter('D-Count', filters);
+    map.setFilter('Recovered', filters);
+    map.setFilter('R-Count', filters);
+    //map.setFilter('coronaActive-circles', filters);
+    //map.setFilter('coronaActive-labels', filters);
 
     // Set the label to the month
 
@@ -44,7 +43,7 @@ map.on('load', function() {
     });
 
     map.addLayer({
-        'id': 'coronaCases-circles',
+        'id': 'Confirmed',
         'type': 'circle',
         'source': 'coronaCases',
         'paint': {
@@ -84,7 +83,7 @@ map.on('load', function() {
     });
 
     map.addLayer({
-        'id': 'coronaCases-labels',
+        'id': 'C-Count',
         'type': 'symbol',
         'source': 'coronaCases',
         'layout': {
@@ -104,67 +103,7 @@ map.on('load', function() {
     });
 
     map.addLayer({
-        'id': 'coronaDeaths-circles',
-        'type': 'circle',
-        'source': 'coronaCases',
-        'paint': {
-            'circle-color': [
-                'interpolate',
-                ['linear'],
-                ['get', 'deaths'],
-                10,
-                '#fee5d9',
-                100,
-                '#fcae91',
-                1000,
-                '#fb6a4a',
-                10000,
-                '#de2d26',
-                100000,
-                '#a50f15'
-            ],
-            'circle-opacity': 0.75,
-            'circle-radius': [
-                'interpolate',
-                ['linear'],
-                ['get', 'deaths'],
-                10,
-                7.5,
-                100,
-                17.5,
-                1000,
-                27.5,
-                10000,
-                37.5,
-                100000,
-                47.5
-            ]
-
-        }
-    });
-
-    map.addLayer({
-        'id': 'coronaDeaths-labels',
-        'type': 'symbol',
-        'source': 'coronaCases',
-        'layout': {
-        'text-field': [
-        'concat',
-        ['to-string', ['get', 'deaths']]
-        ],
-        'text-font': [
-        'Open Sans Bold',
-        'Arial Unicode MS Bold'
-        ],
-        'text-size': 12
-        },
-        'paint': {
-        'text-color': 'rgba(0,0,0,0.5)'
-        }
-    });
-
-    map.addLayer({
-        'id': 'coronaRecovered-circles',
+        'id': 'Recovered',
         'type': 'circle',
         'source': 'coronaCases',
         'paint': {
@@ -204,7 +143,7 @@ map.on('load', function() {
     });
 
     map.addLayer({
-        'id': 'coronaRecovered-labels',
+        'id': 'R-Count',
         'type': 'symbol',
         'source': 'coronaCases',
         'layout': {
@@ -224,6 +163,66 @@ map.on('load', function() {
     });
 
     map.addLayer({
+        'id': 'Deaths',
+        'type': 'circle',
+        'source': 'coronaCases',
+        'paint': {
+            'circle-color': [
+                'interpolate',
+                ['linear'],
+                ['get', 'deaths'],
+                10,
+                '#fee5d9',
+                100,
+                '#fcae91',
+                1000,
+                '#fb6a4a',
+                10000,
+                '#de2d26',
+                100000,
+                '#a50f15'
+            ],
+            'circle-opacity': 0.75,
+            'circle-radius': [
+                'interpolate',
+                ['linear'],
+                ['get', 'deaths'],
+                10,
+                7.5,
+                100,
+                17.5,
+                1000,
+                27.5,
+                10000,
+                37.5,
+                100000,
+                47.5
+            ]
+
+        }
+    });
+
+    map.addLayer({
+        'id': 'D-Count',
+        'type': 'symbol',
+        'source': 'coronaCases',
+        'layout': {
+        'text-field': [
+        'concat',
+        ['to-string', ['get', 'deaths']]
+        ],
+        'text-font': [
+        'Open Sans Bold',
+        'Arial Unicode MS Bold'
+        ],
+        'text-size': 12
+        },
+        'paint': {
+        'text-color': 'rgba(0,0,0,0.5)'
+        }
+    });
+/*
+    map.addLayer({
         'id': 'coronaActive-circles',
         'type': 'circle',
         'source': 'coronaCases',
@@ -241,7 +240,7 @@ map.on('load', function() {
                 10000,
                 '#e6550d',
                 100000,
-                '#a63603'                       
+                '#a63603'
             ],
             'circle-opacity': 0.75,
             'circle-radius': [
@@ -282,7 +281,7 @@ map.on('load', function() {
         'text-color': 'rgba(0,0,0,0.5)'
         }
     });
-
+*/
 
     // filterBy(0);
 
@@ -295,4 +294,34 @@ map.on('load', function() {
 
 });
 
-//Order confirmed, recovered, active, deaths
+//Order: Confirmed, Recovered, Active, Deaths
+
+var toggleableLayerIds = ['Confirmed', 'Recovered', 'Deaths'];
+
+for (var i = 0; i < toggleableLayerIds.length; i++) {
+    var id = toggleableLayerIds[i];
+
+    var link = document.createElement('a');
+    link.href = '#';
+    link.className = 'active';
+    link.textContent = id;
+
+    link.onclick = function(e) {
+        var clickedLayer = this.textContent;
+        e.preventDefault();
+        e.stopPropagation();
+
+        var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
+
+        if (visibility === 'visible') {
+            map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+            this.className = '';
+        } else {
+            this.className = 'active';
+            map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+        }
+    };
+
+    var layers = document.getElementById('menu');
+    layers.appendChild(link);
+}

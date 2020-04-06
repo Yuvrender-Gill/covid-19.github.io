@@ -554,3 +554,51 @@ map.on('click','Recovered', function(e){
 
 
     });
+
+    // Change the cursor to a pointer when the mouse is over the places layer.
+    map.on('mouseenter', 'Active', function() {
+        map.getCanvas().style.cursor = 'pointer';
+    });
+
+    // Change it back to a pointer when it leaves.
+    map.on('mouseleave', 'Active', function() {
+        map.getCanvas().style.cursor = '';
+    });
+
+    // // NEXT DEFINE WHEN YOU WANT THE POPUP TO HAPPEN
+    map.on('click','Active', function(e){
+        popup.remove(); //If a popup already exists, get rid of it!
+
+        //get the rendered features that belong to confired layer
+        var features = map.queryRenderedFeatures(e.point, {
+            "layers": ["Active"]}
+        );
+        //if there is a feature there, do the following
+        if (features.length > 0){
+            console.log(features[0]); //print out the first element of the features array that was selected
+            var feature = features[0]; //store the first element as 'feature'
+            popup.setLngLat(e.lngLat); //place the popup window at the lng and lat where your click event happened
+            //add stuff to the pop up:
+            var active = feature.properties.confirmed - feature.properties.deaths - feature.properties.recovered;
+            if (feature.properties.province ==="") {
+                popup.setHTML(
+                    "<b>Country: </b>" + feature.properties.country + "<hr>" +
+                    "<b>Confirmed: </b>" + feature.properties.confirmed +"<br>" +
+                    "<b>Deaths: </b>" + feature.properties.deaths + "<br>" +
+                    "<b>Recovered: </b>" + feature.properties.recovered + "<br>" +
+                    "<b>Active: </b>" + active);
+
+            } else {
+                popup.setHTML(
+                    "<b>Country: </b>" + feature.properties.country + "<br>" +
+                    "<b>Province: </b>" + feature.properties.province + "<hr>" +
+                    "<b>Confirmed: </b>" + feature.properties.confirmed +"<br>" +
+                    "<b>Deaths: </b>" + feature.properties.deaths + "<br>" +
+                    "<b>Recovered: </b>" + feature.properties.recovered + "<br>" +
+                    "<b>Active: </b>" + active);
+            }
+            popup.addTo(map); //finally add the pop up to the map
+        }
+
+
+        });

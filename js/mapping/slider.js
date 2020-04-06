@@ -281,6 +281,7 @@ map.on('load', function() {
         }
     });
 */
+    filterBy(0);
     document
     .getElementById('slider')
     .addEventListener('input', function(e) {

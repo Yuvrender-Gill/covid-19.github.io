@@ -1,6 +1,5 @@
 
 // Get all the dates
-
 var workingDates = [];
 
 
@@ -16,8 +15,11 @@ for (var date in confirmedTseries[0]){
         workingDates.push( [date, month+ " " + day + ", " +year] );
     }
 }
-
 document.getElementById("slider").max = workingDates.length
+
+
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 function filterBy(date) {
 
     var filters = ['==', 'date', workingDates[date][0]];
@@ -244,6 +246,8 @@ function loadLayers(){
 loadLayers();
 //Order: Confirmed, Recovered, Active, Deaths
 
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
 var toggleableLayerIds = ['Confirmed', 'Recovered', 'Deaths'];
 var allLayers = ['Confirmed', 'Recovered', 'Deaths', "C-Count", "D-Count", "R-Count"];
 for (var i = 0; i < toggleableLayerIds.length; i++) {
@@ -303,3 +307,173 @@ for (var i = 0; i < toggleableLayerIds.length; i++) {
     var layers = document.getElementById('menu');
     layers.appendChild(link);
 }
+
+///////////////////////////////////////////////////////////////////////////
+// Zoom effect
+map.on('click','Confirmed', function(e){
+    map.flyTo({ center: e.features[0].geometry.coordinates, zoom:4.5});
+});
+
+// Zoom effect
+map.on('click','Recovered', function(e){
+    map.flyTo({ center: e.features[0].geometry.coordinates, zoom:4.5});
+});
+
+// Zoom effect
+map.on('click','Deaths', function(e){
+    map.flyTo({ center: e.features[0].geometry.coordinates, zoom:4.5});
+});
+////////////////////////////////////////////////////////////////////////////
+
+var popup = new mapboxgl.Popup({
+    closeButton: true,
+    closeOnClick: false
+});
+
+
+// Change the cursor to a pointer when the mouse is over the places layer.
+map.on('mouseenter', 'Confirmed', function() {
+    map.getCanvas().style.cursor = 'pointer';
+});
+
+// Change it back to a pointer when it leaves.
+map.on('mouseleave', 'Confirmed', function() {
+    map.getCanvas().style.cursor = '';
+});
+
+// // NEXT DEFINE WHEN YOU WANT THE POPUP TO HAPPEN
+map.on('click','Confirmed', function(e){
+popup.remove(); //If a popup already exists, get rid of it!
+
+//get the rendered features that belong to confired layer
+var features = map.queryRenderedFeatures(e.point, {
+    "layers": ["Confirmed"]}
+);
+//if there is a feature there, do the following
+if (features.length > 0){
+    console.log(features[0]); //print out the first element of the features array that was selected
+    var feature = features[0]; //store the first element as 'feature'
+    popup.setLngLat(e.lngLat); //place the popup window at the lng and lat where your click event happened
+    //add stuff to the pop up:
+    var active = feature.properties.confirmed - feature.properties.deaths - feature.properties.recovered;
+    if (feature.properties.province ==="") {
+        popup.setHTML(
+            "<b>Country: </b>" + feature.properties.country + "<hr>" +
+            "<b>Confirmed: </b>" + feature.properties.confirmed +"<br>" +
+            "<b>Deaths: </b>" + feature.properties.deaths + "<br>" +
+            "<b>Recovered: </b>" + feature.properties.recovered + "<br>" +
+            "<b>Active: </b>" + active);
+
+    } else {
+        popup.setHTML(
+            "<b>Country: </b>" + feature.properties.country + "<br>" +
+            "<b>Province: </b>" + feature.properties.province + "<hr>" +
+            "<b>Confirmed: </b>" + feature.properties.confirmed +"<br>" +
+            "<b>Deaths: </b>" + feature.properties.deaths + "<br>" +
+            "<b>Recovered: </b>" + feature.properties.recovered + "<br>" +
+            "<b>Active: </b>" + active
+        );
+    }
+    popup.addTo(map); //finally add the pop up to the map
+}
+
+
+});
+
+// Change the cursor to a pointer when the mouse is over the places layer.
+map.on('mouseenter', 'Deaths', function() {
+    map.getCanvas().style.cursor = 'pointer';
+});
+
+// Change it back to a pointer when it leaves.
+map.on('mouseleave', 'Deaths', function() {
+    map.getCanvas().style.cursor = '';
+});
+
+// // NEXT DEFINE WHEN YOU WANT THE POPUP TO HAPPEN
+map.on('click','Deaths', function(e){
+    popup.remove(); //If a popup already exists, get rid of it!
+
+    //get the rendered features that belong to confired layer
+    var features = map.queryRenderedFeatures(e.point, {
+        "layers": ["Deaths"]}
+    );
+    //if there is a feature there, do the following
+    if (features.length > 0){
+        console.log(features[0]); //print out the first element of the features array that was selected
+        var feature = features[0]; //store the first element as 'feature'
+        popup.setLngLat(e.lngLat); //place the popup window at the lng and lat where your click event happened
+        //add stuff to the pop up:
+        var active = feature.properties.confirmed - feature.properties.deaths - feature.properties.recovered;
+        if (feature.properties.province ==="") {
+            popup.setHTML(
+                "<b>Country: </b>" + feature.properties.country + "<hr>" +
+                "<b>Confirmed: </b>" + feature.properties.confirmed +"<br>" +
+                "<b>Deaths: </b>" + feature.properties.deaths + "<br>" +
+                "<b>Recovered: </b>" + feature.properties.recovered + "<br>" +
+                "<b>Active: </b>" + active);
+
+        } else {
+            popup.setHTML(
+                "<b>Country: </b>" + feature.properties.country + "<br>" +
+                "<b>Province: </b>" + feature.properties.province + "<hr>" +
+                "<b>Confirmed: </b>" + feature.properties.confirmed +"<br>" +
+                "<b>Deaths: </b>" + feature.properties.deaths + "<br>" +
+                "<b>Recovered: </b>" + feature.properties.recovered + "<br>" +
+                "<b>Active: </b>" + active
+            );
+        }
+        popup.addTo(map); //finally add the pop up to the map
+    }
+
+
+    });
+
+
+// Change the cursor to a pointer when the mouse is over the places layer.
+map.on('mouseenter', 'Recovered', function() {
+    map.getCanvas().style.cursor = 'pointer';
+});
+
+// Change it back to a pointer when it leaves.
+map.on('mouseleave', 'Recovered', function() {
+    map.getCanvas().style.cursor = '';
+});
+
+// // NEXT DEFINE WHEN YOU WANT THE POPUP TO HAPPEN
+map.on('click','Recovered', function(e){
+    popup.remove(); //If a popup already exists, get rid of it!
+
+    //get the rendered features that belong to confired layer
+    var features = map.queryRenderedFeatures(e.point, {
+        "layers": ["Recovered"]}
+    );
+    //if there is a feature there, do the following
+    if (features.length > 0){
+        console.log(features[0]); //print out the first element of the features array that was selected
+        var feature = features[0]; //store the first element as 'feature'
+        popup.setLngLat(e.lngLat); //place the popup window at the lng and lat where your click event happened
+        //add stuff to the pop up:
+        var active = feature.properties.confirmed - feature.properties.deaths - feature.properties.recovered;
+        if (feature.properties.province ==="") {
+            popup.setHTML(
+                "<b>Country: </b>" + feature.properties.country + "<hr>" +
+                "<b>Confirmed: </b>" + feature.properties.confirmed +"<br>" +
+                "<b>Deaths: </b>" + feature.properties.deaths + "<br>" +
+                "<b>Recovered: </b>" + feature.properties.recovered + "<br>" +
+                "<b>Active: </b>" + active);
+
+        } else {
+            popup.setHTML(
+                "<b>Country: </b>" + feature.properties.country + "<br>" +
+                "<b>Province: </b>" + feature.properties.province + "<hr>" +
+                "<b>Confirmed: </b>" + feature.properties.confirmed +"<br>" +
+                "<b>Deaths: </b>" + feature.properties.deaths + "<br>" +
+                "<b>Recovered: </b>" + feature.properties.recovered + "<br>" +
+                "<b>Active: </b>" + active);
+        }
+        popup.addTo(map); //finally add the pop up to the map
+    }
+
+
+    });

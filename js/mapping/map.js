@@ -15,3 +15,16 @@ let map = new mapboxgl.Map({
 
 // Add zoom and rotation controls to the map.
 map.addControl(new mapboxgl.NavigationControl());
+
+var layerList = document.getElementById('layer-menu');
+var inputs = layerList.getElementsByTagName('input');
+ 
+function switchLayer(layer) {
+var layerId = layer.target.id;
+map.setStyle('mapbox://styles/mapbox/' + layerId);
+}
+ 
+for (var i = 0; i < inputs.length; i++) {
+inputs[i].onclick = switchLayer;
+}
+

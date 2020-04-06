@@ -46,19 +46,39 @@ function searchCountry() {
         
         /* Check if the two rows should switch place,
         based on the direction, asc or desc: */
-        if (dir == "asc") {
-          if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-            // If so, mark as a switch and break the loop:
-            shouldSwitch = true;
-            break;
-          }
-        } else if (dir == "desc") {
-          if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-            // If so, mark as a switch and break the loop:
-            shouldSwitch = true;
-            break;
-          }
+        if (n !== 0){
+            if (dir == "asc") {
+               
+                if (parseInt(x.innerHTML.toLowerCase()) > parseInt(y.innerHTML.toLowerCase())) {
+                  // If so, mark as a switch and break the loop:
+                  shouldSwitch = true;
+                  break;
+                }
+              } else if (dir == "desc") {
+                if (parseInt(x.innerHTML.toLowerCase()) < parseInt(y.innerHTML.toLowerCase())) {
+                  // If so, mark as a switch and break the loop:
+                  shouldSwitch = true;
+                  break;
+                }
+              }
+
+        } else {
+            if (dir == "asc") {
+          
+                if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                  // If so, mark as a switch and break the loop:
+                  shouldSwitch = true;
+                  break;
+                }
+              } else if (dir == "desc") {
+                if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                  // If so, mark as a switch and break the loop:
+                  shouldSwitch = true;
+                  break;
+                }
+              }
         }
+        
       }
       if (shouldSwitch) {
         /* If a switch has been marked, make the switch
@@ -78,3 +98,5 @@ function searchCountry() {
       }
     }
   }
+
+  

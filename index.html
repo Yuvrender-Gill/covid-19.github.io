@@ -8,12 +8,14 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Barlow+Condensed:900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
+    
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.js"></script> <!-- Sets up Mapbox GL JS -->
     <link href="https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.css" rel="stylesheet" /> <!-- Sets up Mapbox GL JS -->
-
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    
     <!-- Data JS file -->
 
     <script src='js/mapping/controller.js'></script>
@@ -22,46 +24,69 @@
     <link rel="stylesheet" href="./css/sideContainer.css">
     </head>
     <body >
-        <br>
+       
+        
+        <div class="container-fluid rounded  text-white" style = "background-color:#292b2c; width: 98.25%; margin-top:15px;
+         margin-left:15px; margin-right:15px;" >
 
-        <div class="container-fluid rounded  text-white" style = "background-color:#292b2c; width: 98.25%; margin-left:15px; margin-right:15px;" >
-
-            <h1 style = "color: white">Coronavirus COVID-19 Global Cases</h1>
+            <h1 style = "color: #5bc0de">Coronavirus COVID-19 Global Cases</h1>
         </div>
+        
         <div class="container-fluid" style="margin-top:10px; padding-left: 15px">
 
             <div class="row">
                 <div class="col-md-8 rounded">
-                    <div id='map' style='width: 100%; height: 660px;'></div>
+                    
+                    <div id='map' style='width: 100%; height: 630px;'></div>
                     <nav id="menu"></nav>
-                    <div class="slidecontainer" style="width: 100%;">
-                        <label id="month" style = "color: black"></label>
-                        <input id="slider" type="range" min="0"  step="1" value="0" />
-
+                   <div class="slidecontainer" style="width: 100%;">
+                    
+                        <div id="date-container" class="container-fluid rounded  text-white" style = "background-color:#292b2c;
+                         width: 100%; margin-top:15px; height: 70px;" > 
+                         <div class = "row">
+                             <div class="col-sm">
+                                <label id="month" style = "color: #5bc0de; font-weight: bold;"></label>
+                             </div>
+                             <div class="col-sm">
+                                <!-- <div id="layer-menu">
+                                    <input id="light-v10" type="radio" name="rtoggle" value="light" />
+                                    <label for="light">light</label>
+                                    <input id="dark-v10" type="radio" name="rtoggle" value="dark" />
+                                    <label for="dark">dark</label>
+                                </div> -->
+                            </div>
+                         </div>
+                         <input id="slider" type="range" min="0"  step="1" value="0" />
+                        </div>
+                        
+                        
                     </div>
+                   
                     <script src='js/mapping/map.js'></script>
                     <script src='js/mapping/slider.js'></script>
                 </div>
 
                 <div class="col-md-4">
 
-                    <div class="container rounded text-white" style = "background-color:#292b2c; height: 40px;">
+                    <div class="container rounded text-white" style = " background-color:#292b2c; height: 130px;">
                         <div class="row">
                             <div class="col-md-8 rounded">
-                                <h3 style = "color: white">Global Cases</h3>
+                                <h3 style = "color: #5bc0de">Global Cases</h3>
                             </div>
                             <div class="col-md-4 rounded">
                                 <input type="text" id="countrySearch" onkeyup="searchCountry()"
                                 placeholder="Search for country..." style="width: 100%;">
                             </div>
                         </div>
+                        <div id="total-stats" class="container-fluid rounded  text-white" style = "background-color:#292b2c;
+                         width: 100%;  " > 
+                        </div>
                     </div>
-
-                    <div class = "anyclass" style="height:683px; display:block; overflow-y:auto; ">
-                        <table id="countryTable" class="table  table-striped table-bordered country-list">
+                    <div class = "anyclass" style="height:589px; display:block; overflow-y:auto; ">
+                        <table id="countryTable" class="table  table-striped  country-list">
                             <thead>
                             <tr>
-                                <th class ="sorting" scope="col" onclick="sortTable(0)">Country <i class="fas fa-sort" onclick=sortTable(0)></i></th>
+                                <th class ="sorting" scope="col" onclick="sortTable(0)">Country</th>
                                 <th scope="col" onclick="sortTable(1)">Confirmed</th>
                                 <th scope="col" onclick="sortTable(2)">Deaths</th>
                                 <th scope="col" onclick="sortTable(3)">Recovered</th>
@@ -70,9 +95,12 @@
                         </table>
                     </div>
                     <script src='js/mapping/sideTable.js'></script>
+                    <script src='js/mapping/totalStats.js'></script>
                 </div>
+            </div>
         </div>
-        </div>
+       
+       
 
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

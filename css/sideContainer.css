@@ -21,10 +21,11 @@
 
   body {
     background-color: #f7f7f7;
+    /* background-image: url('bg.jpg'); */
   }
 
   #countrySearch {
-    background-image: url('/css/searchicon.png'); /* Add a search icon to input */
+    background-image: url('/css/search.png'); /* Add a search icon to input */
     background-position: 10px 12px; /* Position the search icon */
     background-repeat: no-repeat; /* Do not repeat the icon image */
     width: 100%; /* Full-width */
@@ -89,3 +90,9 @@
     background: #4CAF50;
     cursor: pointer;
   }
+
+  #layer-menu {
+    position: absolute;
+    padding: 10px;
+    font-family: 'Open Sans', sans-serif;
+    }

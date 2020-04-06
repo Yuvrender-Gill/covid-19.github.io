@@ -34,13 +34,13 @@ function populateTable(jsonObject, tbody){
         var country = document.createElement('td');
         country.scope = "row";
         country.align="left";
-        country.innerHTML = "<span style='color: black;'> <b>"+ jsonObject['country'] + "<b> </span>";
+        country.innerHTML = "<span style='color: black;'> <b>"+ jsonObject['country'].replace(/"/i, '') + "<b> </span>";
         var confirmedTd = document.createElement('td');
-        confirmedTd.innerHTML = "<span style='color: #5cb85c;'>"+ jsonObject['confirmed'] + "</span>";
+        confirmedTd.innerHTML =  jsonObject['confirmed'];
         var deathsTd = document.createElement('td')
-        deathsTd.innerHTML = "<span style='color: black;'>"+ jsonObject['deaths'] + "</span>";
+        deathsTd.innerHTML =  jsonObject['deaths'] ;
         var recoveredTd = document.createElement('td')
-        recoveredTd.innerHTML = "<span style='color: black;'>"+ jsonObject['recovered'] + "</span>";
+        recoveredTd.innerHTML =  jsonObject['recovered'] ;
         // Append each row element to row
         trow.appendChild(country);
         trow.appendChild(confirmedTd);

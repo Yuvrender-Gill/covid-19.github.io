@@ -15,7 +15,8 @@ for (var date in confirmedTseries[0]){
         workingDates.push( [date, month+ " " + day + ", " +year] );
     }
 }
-document.getElementById("slider").max = workingDates.length
+document.getElementById("slider").max = workingDates.length;
+document.getElementById("latest-update").innerHTML = "Last Updated : " + workingDates[workingDates.length -1][1];
 
 
 ////////////////////////////////////////////////////////////////////////////

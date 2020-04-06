@@ -96,6 +96,8 @@ for (var entry in confirmedTseries){
                     feature["properties"]["recovered"] = 0;
                 }
             }
+            feature["properties"]["active"] = feature["properties"]["confirmed"] - feature["properties"]["deaths"] 
+                                                - feature["properties"]["recovered"];
         };
         
         countryGeoJSON["features"].push(feature);

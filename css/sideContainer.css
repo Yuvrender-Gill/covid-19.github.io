@@ -30,11 +30,15 @@
     width: 100%; /* Full-width */
     height: 40px;
     font-size: 16px; /* Increase font-size */
-    text-color: white;
     border: 1px solid #292b2c; /* Add a grey border */
     margin-bottom: 12px; /* Add some space below the input */
     background-color:#292b2c;
   }
+
+  input.search-query {
+    text: white;
+}
+
 
   i {
     border: solid black;
@@ -53,4 +57,5 @@
 
   #slider{
     width:100%;
+    
   }

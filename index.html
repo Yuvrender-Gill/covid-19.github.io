@@ -16,8 +16,7 @@
 
     <!-- Data JS file -->
 
-    <script src='js/mapping/country_json.js'></script>
-
+    <script src='js/mapping/controller.js'></script>
     <script src='js/mapping/countryGeoJSON.js'></script>
     <link rel="stylesheet" href="./js/mapping/assets.css">
     <link rel="stylesheet" href="./css/sideContainer.css">
@@ -25,29 +24,25 @@
     <body >
         <br>
 
-        <div class="container-fluid rounded  text-white" style = "background-color:#292b2c; width: 97%; margin-left:30px;" >
+        <div class="container-fluid rounded  text-white" style = "background-color:#292b2c; width: 98.25%; margin-left:15px; margin-right:15px;" >
 
             <h1 style = "color: white">Coronavirus COVID-19 Global Cases</h1>
         </div>
-        <br>
-        <div class="container-fluid" style="padding-left: 30px">
+        <div class="container-fluid" style="margin-top:10px; padding-left: 15px">
 
             <div class="row">
                 <div class="col-md-8 rounded">
                     <div id='map' style='width: 100%; height: 640px;'></div>
-                    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-                    
-                            <label id="month"></label>
-                            <input id="slider" type="range" min="0"  step="1" value="0" />
-                        
-
+                   
+                    <label id="month"></label>
+                    <input id="slider" type="range" min="0"  step="1" value="0" />
+        
                     <script src='js/mapping/map.js'></script>
                     <script src='js/mapping/slider.js'></script>
-                    <!-- <script src='js/mapping/mapFormat.js'></script> -->
                 </div>
 
                 <div class="col-md-4">
-                    <script src='js/mapping/controller.js'></script>
+                    
                     <div class="container rounded text-white" style = "background-color:#292b2c; height: 40px;">
                         <div class="row">
                             <div class="col-md-8 rounded">
@@ -60,9 +55,8 @@
                         </div>
                     </div>
                     
-                    
-                    <div class = anyclass style="height:637px;display:block;overflow-y:auto;">
-                        <table id="countryTable" class="table table-striped table-bordered country-list">
+                    <div class = "anyclass" style="height:683px; display:block; overflow-y:auto; ">
+                        <table id="countryTable" class="table  table-striped table-bordered country-list">
                             <thead>
                             <tr>
                                 <th class ="sorting" scope="col">Country <i class="fas fa-sort" onclick=sortTable(0)></i></th>

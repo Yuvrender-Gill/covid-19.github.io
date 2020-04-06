@@ -18,7 +18,7 @@ for (var entry in confirmedTseries){
     }
 }
 
-
+document.getElementById("slider").max = workingDates.length
 function filterBy(date) {
 
     var filters = ['==', 'date', workingDates[date][0]];

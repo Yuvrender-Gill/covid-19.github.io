@@ -37,7 +37,7 @@ function searchCountry() {
       for (i = 1; i < (rows.length - 1); i++) {
         // Start by saying there should be no switching:
         shouldSwitch = false;
-        console.log(rows[0])
+       
         /* Get the two elements you want to compare,
         one from current row and one from the next: */
     

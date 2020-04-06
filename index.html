@@ -61,10 +61,10 @@
                         <table id="countryTable" class="table  table-striped table-bordered country-list">
                             <thead>
                             <tr>
-                                <th class ="sorting" scope="col">Country <i class="fas fa-sort" onclick=sortTable(0)></i></th>
-                                <th scope="col">Confirmed</th>
-                                <th scope="col">Deaths</th>
-                                <th scope="col">Recovered</th>
+                                <th class ="sorting" scope="col" onclick="sortTable(0)">Country <i class="fas fa-sort" onclick=sortTable(0)></i></th>
+                                <th scope="col" onclick="sortTable(1)">Confirmed</th>
+                                <th scope="col" onclick="sortTable(2)">Deaths</th>
+                                <th scope="col" onclick="sortTable(3)">Recovered</th>
                             </tr>
                             </thead>
                         </table>
@@ -72,8 +72,6 @@
                     <script src='js/mapping/sideTable.js'></script>
                 </div>
         </div>
-
-
         </div>
 
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

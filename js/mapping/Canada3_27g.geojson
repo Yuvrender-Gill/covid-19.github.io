@@ -6,10 +6,9 @@
 			"type" : "Feature",
 			"geometry" : null,
 			"properties" : {
-				"date" : "2020-1-22",
-				"confirmed" : 0,
-				"deaths" : 0,
-				"recovered" : 0
+				"country" : Canada
+				"covid_cases" : {date1: {confired, dead, recoved, active })
+				}
 			}
 		},
 		{

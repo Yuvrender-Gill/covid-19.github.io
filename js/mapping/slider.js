@@ -314,7 +314,7 @@ for (var i = 0; i < toggleableLayerIds.length; i++) {
       }
       else if (this.textContent === 'Deaths'){
         var clickedLayer1 = 'Deaths'
-        var clickedlayer2 = 'D-Count'
+        var clickedLayer2 = 'D-Count'
       }
         e.preventDefault();
         e.stopPropagation();

@@ -15,8 +15,7 @@ for (var date in confirmedTseries[0]){
         workingDates.push( [date, month+ " " + day + ", " +year] );
     }
 }
-document.getElementById("slider").max = workingDates.length;
-document.getElementById("latest-update").innerHTML = "Last Updated : " + workingDates[workingDates.length -1][1];
+document.getElementById("slider").max = workingDates.length
 
 
 ////////////////////////////////////////////////////////////////////////////
@@ -30,6 +29,8 @@ function filterBy(date) {
     map.setFilter('D-Count', filters);
     map.setFilter('Recovered', filters);
     map.setFilter('R-Count', filters);
+    map.setFilter('Active', filters);
+    map.setFilter('A-Count', filters);
     // Set the label to the month
 
     document.getElementById('month').textContent = workingDates[date][1];
@@ -238,7 +239,7 @@ function loadLayers(){
             'type': 'circle',
             'source': 'coronaCases',
             'layout':{
-                    'visibility': 'visible'
+                    'visibility': 'none'
                 },
             'paint': {
                 'circle-color': [
@@ -281,7 +282,7 @@ function loadLayers(){
             'type': 'symbol',
             'source': 'coronaCases',
             'layout': {
-            'visibility': 'visible',
+            'visibility': 'none',
             'text-field': [
             'concat',
             ['to-string', ['get', 'active']]
@@ -313,8 +314,8 @@ loadLayers();
 
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
-var toggleableLayerIds = ['Confirmed', 'Recovered', 'Deaths'];
-var allLayers = ['Confirmed', 'Recovered', 'Deaths', "C-Count", "D-Count", "R-Count"];
+var toggleableLayerIds = ['Confirmed', 'Recovered', 'Active', 'Deaths'];
+var allLayers = ['Confirmed', 'Recovered', 'Deaths', 'Active', "C-Count", "D-Count", "R-Count", "A-Count"];
 for (var i = 0; i < toggleableLayerIds.length; i++) {
     var id = toggleableLayerIds[i];
 
@@ -328,6 +329,8 @@ for (var i = 0; i < toggleableLayerIds.length; i++) {
     link.style = 'color: #006d2c'
     else if (id === 'Deaths')
     link.style = 'color: #a50f15'
+    else if (id === 'Active')
+    link.style = 'color: #e6550d'
 
     link.onclick = function(e) {
       if (this.textContent === 'Confirmed'){
@@ -341,6 +344,10 @@ for (var i = 0; i < toggleableLayerIds.length; i++) {
       else if (this.textContent === 'Deaths'){
         var clickedLayer1 = 'Deaths'
         var clickedLayer2 = 'D-Count'
+      }
+      else if (this.textContent === 'Active'){
+        var clickedLayer1 = 'Active'
+        var clickedLayer2 = 'A-Count'
       }
         e.preventDefault();
         e.stopPropagation();
@@ -376,17 +383,22 @@ for (var i = 0; i < toggleableLayerIds.length; i++) {
 ///////////////////////////////////////////////////////////////////////////
 // Zoom effect
 map.on('click','Confirmed', function(e){
-    map.flyTo({ center: e.features[0].geometry.coordinates, zoom:4.5});
+    map.flyTo({ center: e.features[0].geometry.coordinates, zoom:4.5, speed: 0.5});
 });
 
 // Zoom effect
 map.on('click','Recovered', function(e){
-    map.flyTo({ center: e.features[0].geometry.coordinates, zoom:4.5});
+    map.flyTo({ center: e.features[0].geometry.coordinates, zoom:4.5, speed: 0.5});
 });
 
 // Zoom effect
 map.on('click','Deaths', function(e){
-    map.flyTo({ center: e.features[0].geometry.coordinates, zoom:4.5});
+    map.flyTo({ center: e.features[0].geometry.coordinates, zoom:4.5, speed: 0.5});
+});
+
+// Zoom effect
+map.on('click','Active', function(e){
+    map.flyTo({ center: e.features[0].geometry.coordinates, zoom:4.5, speed: 0.5});
 });
 ////////////////////////////////////////////////////////////////////////////
 

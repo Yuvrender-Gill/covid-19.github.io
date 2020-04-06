@@ -45,6 +45,9 @@ map.on('load', function() {
         'id': 'Confirmed',
         'type': 'circle',
         'source': 'coronaCases',
+        'layout':{
+                'visibility': 'none'
+              },
         'paint': {
             'circle-color': [
                 'interpolate',
@@ -85,6 +88,9 @@ map.on('load', function() {
         'id': 'C-Count',
         'type': 'symbol',
         'source': 'coronaCases',
+        'layout':{
+                'visibility': 'none'
+              },
         'layout': {
         'text-field': [
         'concat',
@@ -105,6 +111,9 @@ map.on('load', function() {
         'id': 'Recovered',
         'type': 'circle',
         'source': 'coronaCases',
+        'layout':{
+                'visibility': 'none'
+              },
         'paint': {
             'circle-color': [
                 'interpolate',
@@ -145,6 +154,9 @@ map.on('load', function() {
         'id': 'R-Count',
         'type': 'symbol',
         'source': 'coronaCases',
+        'layout':{
+                'visibility': 'none'
+              },
         'layout': {
         'text-field': [
         'concat',
@@ -165,6 +177,9 @@ map.on('load', function() {
         'id': 'Deaths',
         'type': 'circle',
         'source': 'coronaCases',
+        'layout':{
+                'visibility': 'none'
+              },
         'paint': {
             'circle-color': [
                 'interpolate',
@@ -205,6 +220,9 @@ map.on('load', function() {
         'id': 'D-Count',
         'type': 'symbol',
         'source': 'coronaCases',
+        'layout':{
+                'visibility': 'none'
+              },
         'layout': {
         'text-field': [
         'concat',
@@ -302,6 +320,12 @@ for (var i = 0; i < toggleableLayerIds.length; i++) {
     link.href = '#';
     link.className = 'active';
     link.textContent = id;
+    if (id === 'Confirmed')
+    link.style = 'color: #08519c'
+    else if (id === 'Recovered')
+    link.style = 'color: #006d2c'
+    else if (id === 'Deaths')
+    link.style = 'color: #a50f15'
 
     link.onclick = function(e) {
       if (this.textContent === 'Confirmed'){

@@ -25,15 +25,16 @@
   }
 
   #countrySearch {
-    background-image: url('/css/search.png'); /* Add a search icon to input */
-    background-position: 10px 12px; /* Position the search icon */
+    background-color:#292b2c;
+    background-image: url('search.png'); /* Add a search icon to input */
+    background-position: 0px 10px; /* Position the search icon */
+    background-size: 40px 30px;
     background-repeat: no-repeat; /* Do not repeat the icon image */
     width: 100%; /* Full-width */
-    height: 40px;
-    font-size: 16px; /* Increase font-size */
+    font-size: 20px; /* Increase font-size */
+    padding: 12px 20px 12px 40px; /* Add some padding */
     border: 1px solid #292b2c; /* Add a grey border */
     margin-bottom: 12px; /* Add some space below the input */
-    background-color:#292b2c;
   }
 
   input.search-query {

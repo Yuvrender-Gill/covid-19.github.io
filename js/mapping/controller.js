@@ -99,4 +99,12 @@ function searchCountry() {
     }
   }
 
-  
+  function flyFunction(id){
+      for (var entry in countryGeoJSON["features"]){
+          if (countryGeoJSON["features"][entry]["properties"]["country"] === id.replace("table-entry-","")){
+            map.flyTo({ center: countryGeoJSON["features"][entry].geometry.coordinates, zoom:4.5, speed: 0.5});
+            break;
+          }
+      }
+
+  }

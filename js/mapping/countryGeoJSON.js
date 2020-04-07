@@ -104,7 +104,7 @@ for (var entry in confirmedTseries){
     };
     
 };
-console.log(countryGeoJSON)
+
 // EOF
 
 

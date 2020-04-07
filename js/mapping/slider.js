@@ -321,7 +321,14 @@ for (var i = 0; i < toggleableLayerIds.length; i++) {
 
     var link = document.createElement('a');
     link.href = '#';
+    if (id === 'Confirmed')
     link.className = 'active';
+    else if (id === 'Recovered')
+    link.className = ''
+    else if (id === 'Deaths')
+    link.className = ''
+    else if (id === 'Active')
+    link.className = ''
     link.textContent = id;
     if (id === 'Confirmed')
     link.style = 'color: #08519c'

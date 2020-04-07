@@ -35,6 +35,7 @@
     padding: -1px 15px 5px 10px; /* Add some padding */
     border: 1px solid #292b2c; /* Add a grey border */
     margin-bottom: 12px; /* Add some space below the input */
+    color: white;
   }
 
   input.search-query {
@@ -88,7 +89,7 @@
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    background: #4CAF50;
+    background: #020405;
     cursor: pointer;
   }
 

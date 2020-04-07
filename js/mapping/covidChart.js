@@ -10,8 +10,8 @@ google.charts.load('current', {'packages':['line']});
       data.addColumn('string', 'Date');
       data.addColumn('number', 'Confirmed');
       data.addColumn('number', 'Deaths');
-      data.addColumn('number', 'Recovered');
       data.addColumn('number', 'Active');
+      data.addColumn('number', 'Recovered');
       var day = 0
       for (var entry in covid_global){
           
@@ -40,7 +40,7 @@ google.charts.load('current', {'packages':['line']});
         },
     
         lineWidth: 10,
-        width: '100%',
+        width: '98%',
         height: 400,
         backgroundColor: '#f7f7f7',
         is3D: true,

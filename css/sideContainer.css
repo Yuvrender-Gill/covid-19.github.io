@@ -25,7 +25,7 @@
   }
 
   #countrySearch {
-    background-color:#fff;
+    background-color:#292b2c;
     background-image: url('search.png'); /* Add a search icon to input */
     background-position: 0px 5px; /* Position the search icon */
     background-size: 30px 25px;

@@ -4,7 +4,6 @@ function getAggrData(Url)
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open( "GET", Url, false ); // false for synchronous request
     xmlHttp.send( null );
-    console.log(xmlHttp.responseText);
     
     return JSON.parse(xmlHttp.responseText);
 }

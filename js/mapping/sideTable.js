@@ -34,7 +34,8 @@ function populateTable(jsonObject, tbody){
         var country = document.createElement('td');
         country.scope = "row";
         country.align="left";
-        country.innerHTML = "<span style='color: black;'> <b>"+ jsonObject['country'].replace(/"/i, '') + "<b> </span>";
+        country.innerHTML = "<span id='table-entry-" + jsonObject['country'] +
+                             "' style='color: black;cursor:pointer;' onclick=flyFunction(this.id)> <b>"+ jsonObject['country'].replace(/"/i, '') + "<b> </span>";
         var confirmedTd = document.createElement('td');
         confirmedTd.innerHTML =  jsonObject['confirmed'];
         var deathsTd = document.createElement('td')

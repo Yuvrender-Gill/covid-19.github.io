@@ -66,15 +66,23 @@ function makeTable(geoJSONFile){
     var table = document.getElementsByClassName("country-list")[0];
     var tbody = document.createElement('tbody'); // Body element
     var byCountry = {}
+    var today_flag = 0
+    for (var entry in geoJSONFile['features']){
+        if (geoJSONFile['features'][entry]['properties']['date'] === today){
+            today_flag = 1;
+            break;
+        }
+    }
     for (var entry in geoJSONFile['features']){
         var object = geoJSONFile['features'][entry]['properties']['country'];
+        
         if (geoJSONFile['features'][entry]['properties']['date'] === today){
             if (object in byCountry){
                 byCountry[object]['confirmed'] = byCountry[object]['confirmed'] 
                                                 + geoJSONFile['features'][entry]['properties']['confirmed'];
                 byCountry[object]['deaths'] = byCountry[object]['deaths'] 
                                                 + geoJSONFile['features'][entry]['properties']['deaths'];
-                byCountry[object]['deaths'] = byCountry[object]['recovered'] 
+                byCountry[object]['recovered'] = byCountry[object]['recovered'] 
                                                 + geoJSONFile['features'][entry]['properties']['recovered'];
             } else {
                 byCountry[object] = {
@@ -84,8 +92,7 @@ function makeTable(geoJSONFile){
                     "recovered":geoJSONFile['features'][entry]['properties']['recovered'],
                 }
             }
-            
-        } else if (geoJSONFile['features'][entry]['properties']['date'] === yesterday) {
+        } else if (geoJSONFile['features'][entry]['properties']['date'] === yesterday && today_flag === 0) {
             if (object in byCountry){
                 byCountry[object]['confirmed'] = byCountry[object]['confirmed'] 
                                                 + geoJSONFile['features'][entry]['properties']['confirmed'];

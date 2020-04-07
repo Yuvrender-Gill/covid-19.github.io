@@ -119,8 +119,6 @@ function makeTable(geoJSONFile){
     table.appendChild(tbody); // Append table body to the html table element
 }
 
-
-
 // Call the make table function
 makeTable(countryGeoJSON);
 

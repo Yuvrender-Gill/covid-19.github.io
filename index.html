@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Barlow+Condensed:900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
-
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -37,7 +37,7 @@
 
         </div>
 
-        <div class="container-fluid" style="margin-top:10px; padding-left: 15px">
+        <div class="container-fluid overflow-anchor: none;" style="margin-top:10px; padding-left: 15px">
 
             <div class="row">
                 <div class="col-md-8 rounded">
@@ -107,8 +107,14 @@
                     <script src='js/mapping/totalStats.js'></script>
                 </div>
             </div>
+            <div class="row">
+                <div id="line_top_x", style = "margin-bottom:30px; margin-left:15px; margin-right:15px;width:100%"></div>
+            </div>
+            
         </div>
-
+        
+       
+        <script src='js/mapping/covidChart.js'></script>
 
 
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

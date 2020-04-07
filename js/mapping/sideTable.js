@@ -27,6 +27,7 @@ function dateYesterday(){
 }
 
 function populateTable(jsonObject, tbody){
+   
     if (jsonObject['country'] !== undefined) {
         
         var trow = document.createElement('tr'); // Row 
@@ -67,52 +68,56 @@ function makeTable(geoJSONFile){
     var tbody = document.createElement('tbody'); // Body element
     var byCountry = {}
     var today_flag = 0
-    for (var entry in geoJSONFile['features']){
-        if (geoJSONFile['features'][entry]['properties']['date'] === today){
+    for (var ent in geoJSONFile['features']){
+        if (geoJSONFile['features'][ent]['properties']['date'] === today){
             today_flag = 1;
             break;
         }
     }
+    
     for (var entry in geoJSONFile['features']){
         var object = geoJSONFile['features'][entry]['properties']['country'];
-        
-        if (geoJSONFile['features'][entry]['properties']['date'] === today){
-            if (object in byCountry){
-                byCountry[object]['confirmed'] = byCountry[object]['confirmed'] 
-                                                + geoJSONFile['features'][entry]['properties']['confirmed'];
-                byCountry[object]['deaths'] = byCountry[object]['deaths'] 
-                                                + geoJSONFile['features'][entry]['properties']['deaths'];
-                byCountry[object]['recovered'] = byCountry[object]['recovered'] 
-                                                + geoJSONFile['features'][entry]['properties']['recovered'];
-            } else {
-                byCountry[object] = {
-                    "country": geoJSONFile['features'][entry]['properties']['country'],
-                    "confirmed": geoJSONFile['features'][entry]['properties']['confirmed'],
-                    "deaths": geoJSONFile['features'][entry]['properties']['deaths'] ,
-                    "recovered":geoJSONFile['features'][entry]['properties']['recovered'],
+        if ((typeof geoJSONFile['features'][entry]['properties']['date']) !== 'undefined'){
+   
+            if (geoJSONFile['features'][entry]['properties']['date'].toString().includes(today ) ){
+                
+                if (object in byCountry){
+                    byCountry[object]['confirmed'] = byCountry[object]['confirmed'] 
+                                                    + geoJSONFile['features'][entry]['properties']['confirmed'];
+                    byCountry[object]['deaths'] = byCountry[object]['deaths'] 
+                                                    + geoJSONFile['features'][entry]['properties']['deaths'];
+                    byCountry[object]['recovered'] = byCountry[object]['recovered'] 
+                                                    + geoJSONFile['features'][entry]['properties']['recovered'];
+                } else {
+                    byCountry[object] = {
+                        "country": geoJSONFile['features'][entry]['properties']['country'],
+                        "confirmed": geoJSONFile['features'][entry]['properties']['confirmed'],
+                        "deaths": geoJSONFile['features'][entry]['properties']['deaths'] ,
+                        "recovered":geoJSONFile['features'][entry]['properties']['recovered'],
+                    }
+                }
+            } else if (geoJSONFile['features'][entry]['properties']['date'].toString().includes(yesterday )  && today_flag === 0) {
+                
+                if (object in byCountry){
+                    byCountry[object]['confirmed'] = byCountry[object]['confirmed'] 
+                                                    + geoJSONFile['features'][entry]['properties']['confirmed'];
+                    byCountry[object]['deaths'] = byCountry[object]['deaths'] 
+                                                    + geoJSONFile['features'][entry]['properties']['deaths'];
+                    byCountry[object]['recovered'] = byCountry[object]['recovered'] 
+                                                    + geoJSONFile['features'][entry]['properties']['recovered'];
+                } else {
+                    byCountry[object] = {
+                        "country": geoJSONFile['features'][entry]['properties']['country'],
+                        "confirmed": geoJSONFile['features'][entry]['properties']['confirmed'],
+                        "deaths": geoJSONFile['features'][entry]['properties']['deaths'] ,
+                        "recovered":geoJSONFile['features'][entry]['properties']['recovered'],
+                    }
                 }
             }
-        } else if (geoJSONFile['features'][entry]['properties']['date'] === yesterday && today_flag === 0) {
-            if (object in byCountry){
-                byCountry[object]['confirmed'] = byCountry[object]['confirmed'] 
-                                                + geoJSONFile['features'][entry]['properties']['confirmed'];
-                byCountry[object]['deaths'] = byCountry[object]['deaths'] 
-                                                + geoJSONFile['features'][entry]['properties']['deaths'];
-                byCountry[object]['recovered'] = byCountry[object]['recovered'] 
-                                                + geoJSONFile['features'][entry]['properties']['recovered'];
-            } else {
-                byCountry[object] = {
-                    "country": geoJSONFile['features'][entry]['properties']['country'],
-                    "confirmed": geoJSONFile['features'][entry]['properties']['confirmed'],
-                    "deaths": geoJSONFile['features'][entry]['properties']['deaths'] ,
-                    "recovered":geoJSONFile['features'][entry]['properties']['recovered'],
-                }
-            }
-            
         }
     }
-    
     for (var entry in byCountry){
+       
         populateTable(byCountry[entry], tbody)
 
     }
